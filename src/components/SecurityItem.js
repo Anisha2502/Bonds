@@ -11,17 +11,17 @@ function SecurityItem(props) {
             <span className="badge bg-light text-dark">{security.id}</span>
           </div>
           <div className='m-2'>
-            <span className="badge bg-info text-dark">{security.Type}</span>
+            <span className="badge bg-info text-dark">{security.type}</span>
           </div>
           <div className='m-2'>
-            <span className="badge bg-light text-dark">{security.FaceValue}</span>
+            <span className="badge bg-light text-dark">{security.faceValue}</span>
           </div>
           <div className='m-2'>
-            <span className="badge bg-light text-dark">{security.Status}</span>
+            <span className="badge bg-light text-dark">{security.status}</span>
           </div>
           <div className='m-2 d-flex flex-row'>
             <i className="fa-solid fa-calendar-days mx-2"></i>
-            <span className="badge bg-warning text-dark">{security.MaturityDate}</span>
+            <span className="badge bg-warning text-dark">{security.maturityDate}</span>
           </div>
       </div>
     </>

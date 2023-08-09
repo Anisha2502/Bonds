@@ -1,41 +1,43 @@
-import React, {useState} from 'react'
-//import { useLocation } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { useLocation } from 'react-router-dom';
 
 const Tradeedit = (props) => {
-    // const location = useLocation();
-  // const [tradeId] = useState(location.trade.id)
-  // const [trade, setTrade] = useState([]);
-    // const fetchTrade = async()=>{
-    //   const response = await fetch(`http://localhost:5000/api/trade/get-trade/${tradeId}`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'auth-token' : localStorage.getItem('token')
-    //     }
-    //   });
-    //   const trad = await response.json();
-    //   setTrade(trad);
-    // }
+    const location = useLocation();
+  console.log(props)
 
-    //useEffect(() => { 
-        //   fetchTrade();
-        // },[])
+  const [tradeId] = useState(props.trade.id)
+  const [trade, setTrade] = useState([]);
+    const fetchTrade = async()=>{
+      const response = await fetch(`http://localhost:5000/api/trade/${tradeId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token' : localStorage.getItem('token')
+        }
+      });
+      const trad = await response.json();
+      setTrade(trad);
+    }
+
+    useEffect(() => { 
+          fetchTrade();
+        },[])
 
     // const trade = props.trade;
     // const tradeDate = new Date(props.trade.tradeDate);
     // const settlementDate = new Date(props.trade.settlementDate);
-    const trade =  {
-        id: "trade001",
-        bookId: "book001",
-        counterpartyId: "counterparty001",
-        securityId: "security001",
-        quantity: 100,
-        status: "completed",
-        price: 50.25,
-        buy_sell: "buy",
-        tradeDate: "2023-08-08T10:00:00Z",
-        settlementDate: "2023-08-15"
-      }
+    // const trade =  {
+    //     id: "trade001",
+    //     bookId: "book001",
+    //     counterpartyId: "counterparty001",
+    //     securityId: "security001",
+    //     quantity: 100,
+    //     status: "completed",
+    //     price: 50.25,
+    //     buy_sell: "buy",
+    //     tradeDate: "2023-08-08T10:00:00Z",
+    //     settlementDate: "2023-08-15"
+    //   }
     
     const [issue, setIssue] = useState("Trade Fail");
 

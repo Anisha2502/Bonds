@@ -1,42 +1,42 @@
-import React from 'react'
-import { useLocation, Link  } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { useParams, Link  } from 'react-router-dom';
 
 const TradeDetail = (props) => {
-    // const location = useLocation();
-  // const [tradeId] = useState(location.trade.id)
-  // const [trade, setTrade] = useState([]);
-    // const fetchTrade = async()=>{
-    //   const response = await fetch(`http://localhost:5000/api/trade/get-trade/${tradeId}`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'auth-token' : localStorage.getItem('token')
-    //     }
-    //   });
-    //   const trad = await response.json();
-    //   setTrade(trad);
-    // }
+  const params = useParams()
+  const [trade, setTrade] = useState([]);
+    const fetchTrade = async()=>{
+      const response = await fetch(`http://localhost:5000/api/trade/${params.id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token' : localStorage.getItem('token')
+        }
+      });
+      const trad = await response.json();
+      console.log(trad)
+      setTrade(trad);
+    }
 
-    //useEffect(() => { 
-        //   fetchTrade();
-        // },[])
+    useEffect(() => { 
+          fetchTrade();
+        },[])
 
     // const trade = props.trade;
     // const tradeDate = new Date(props.trade.tradeDate);
     // const settlementDate = new Date(props.trade.settlementDate);
-    const trade =  {
-        id: "trade001",
-        bookId: "book001",
-        counterpartyId: "counterparty001",
-        securityId: "security001",
-        quantity: 100,
-        status: "completed",
-        price: 50.25,
-        buy_sell: "buy",
-        tradeDate: "2023-08-08T10:00:00Z",
-        settlementDate: "2023-08-07",
-        issue : "Trade Fail"
-      }
+    // const trade =  {
+    //     id: "trade001",
+    //     bookId: "book001",
+    //     counterpartyId: "counterparty001",
+    //     securityId: "security001",
+    //     quantity: 100,
+    //     status: "completed",
+    //     price: 50.25,
+    //     buy_sell: "buy",
+    //     tradeDate: "2023-08-08T10:00:00Z",
+    //     settlementDate: "2023-08-07",
+    //     issue : "Trade Fail"
+    //   }
     
 
   return (
@@ -44,7 +44,6 @@ const TradeDetail = (props) => {
 
       <div className="card">
       <div className="card-header">
-        {trade.id}
         <Link key={trade.id} to={{
                         pathname: `/modify-trade/${trade.id}`,
                         state: { trade: trade }
@@ -57,16 +56,16 @@ const TradeDetail = (props) => {
       <div className="card-body">
 
         <div className="border border-1 rounded m-3 p-3">
-        <h5 className="card-title">Book Id</h5>
+        <h5 className="card-title">Book Name</h5>
         <div className="card-text">
-          {trade.bookId}
+          {trade.bookName}
         </div>
         </div>
 
         <div className="border border-1 rounded m-3 p-3">
-        <h5 className="card-title">Counterparty Id</h5>
+        <h5 className="card-title">Counterparty Name</h5>
         <div className="card-text">
-          {trade.counterpartyId}
+          {trade.counterPartyName}
         </div>
         </div>
 
@@ -101,7 +100,7 @@ const TradeDetail = (props) => {
         <div className="border border-1 rounded m-3 p-3">
         <h5 className="card-title">Buy/Sell</h5>
         <div className="card-text">
-        <span className="badge text-bg-light mx-1">{trade.buy_sell}</span>
+        <span className="badge text-bg-light mx-1">{trade.buySell}</span>
         </div>
         </div>
 

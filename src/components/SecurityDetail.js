@@ -1,26 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom';
 import TradeItem from './TradeItem';
 
 const SecurityDetail = (props) => {
-  // const location = useLocation();
-  // const [securityId] = useState(location.state.id)
-  // const [security, setSecurity] = useState([]);
-  // const [trades, setTrades] = useState([]);
+  const params = useParams();
+  const [security, setSecurity] = useState([]);
+  const [trades, setTrades] = useState([]);
 
-  // const fetchSecurity = async()=>{
-  //   const responce = await fetch(`http://localhost:5000/api/security/get-all-securities/${securityId}`, {
-  //     method: 'GET',
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //         'auth-token' : localStorage.getItem('token')
-  //     }
-  //   });
-  //   const sec = await responce.json();
-  //   setSecurity(sec);
-  //   console.log("Security Fetched")
-  // }
+  const fetchSecurity = async()=>{
+    const responce = await fetch(`http://localhost:5000/api/security/${params.id}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'auth-token' : localStorage.getItem('token')
+      }
+    });
+    const sec = await responce.json();
+    setSecurity(sec);
+    console.log("Security Fetched")
+  }
 
   // const fetchTrades = async() => {
   //   const response = await fetch(`http://localhost:5000/api/security/get-all-trades-for-security/${securityId}`, {
@@ -34,35 +32,35 @@ const SecurityDetail = (props) => {
   //   setTrades(trade);
   // }
 
-  // useEffect(() => { 
-  //   fetchSecurity();
-  //   fetchTrades();
-  // },[])
+  useEffect(() => { 
+    fetchSecurity();
+    // fetchTrades();
+  },[])
 
-  const security = {
-    id: 1,
-    ISIN: "US1234567890",
-    CUSIP: "123456789",
-    MaturityDate: "8 Aug 2023",
-    Coupon: 5,
-    Type: "bond",
-    FaceValue: 1000,
-    Status: "Matured"
-  };
+  // const security = {
+  //   id: 1,
+  //   ISIN: "US1234567890",
+  //   CUSIP: "123456789",
+  //   MaturityDate: "8 Aug 2023",
+  //   Coupon: 5,
+  //   Type: "bond",
+  //   FaceValue: 1000,
+  //   Status: "Matured"
+  // };
 
-  const trades =  {
-    0 : {
-    id: "trade001",
-    bookId: "book001",
-    counterpartyId: "counterparty001",
-    securityId: "security001",
-    quantity: 100,
-    status: "completed",
-    price: 50.25,
-    buy_sell: "buy",
-    tradeDate: "2023-08-08T10:00:00Z",
-    settlementDate: "2023-08-15"
-  }}
+  // const trades =  {
+  //   0 : {
+  //   id: "trade001",
+  //   bookId: "book001",
+  //   counterpartyId: "counterparty001",
+  //   securityId: "security001",
+  //   quantity: 100,
+  //   status: "completed",
+  //   price: 50.25,
+  //   buy_sell: "buy",
+  //   tradeDate: "2023-08-08T10:00:00Z",
+  //   settlementDate: "2023-08-15"
+  // }}
 
 
   return (
@@ -80,47 +78,47 @@ const SecurityDetail = (props) => {
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">ISIN : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.ISIN}</span>
+                  <span className="badge text-bg-light mx-1">{security.isin}</span>
                 </div>
               </div>
 
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">CUSIP : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.CUSIP}</span>
+                  <span className="badge text-bg-light mx-1">{security.cusip}</span>
                 </div>
               </div>
 
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">Maturity Date : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.MaturityDate}</span>
+                  <span className="badge text-bg-light mx-1">{security.maturityDate}</span>
                 </div>
               </div>
 
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">Coupon : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.Coupon}</span>
+                  <span className="badge text-bg-light mx-1">{security.coupon}</span>
                 </div>
               </div>
 
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">Type : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.Type}</span>
+                  <span className="badge text-bg-light mx-1">{security.type}</span>
                 </div>
               </div>
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">Face Value : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.FaceValue}</span>
+                  <span className="badge text-bg-light mx-1">{security.faceValue}</span>
                 </div>
               </div>
               <div className="container  p-1 d-flex flex-row">
                 <h5 className="card-title">Status : </h5>
                 <div className="card-text">
-                  <span className="badge text-bg-light mx-1">{security.Status}</span>
+                  <span className="badge text-bg-light mx-1">{security.status}</span>
                 </div>
               </div>
 

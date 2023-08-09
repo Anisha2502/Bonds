@@ -36,8 +36,8 @@ function App() {
             <Route exact path="/login" element={<Login showAlert={showAlert}/>}></Route>
             <Route exact path="/dashboard" element={<Securities showAlert={showAlert}/>}></Route>
             <Route exact path="/trades" element={<Trades showAlert={showAlert}/>}></Route>
-            <Route exact path="/securityDetails" element={<SecurityDetail/>} />
-            <Route exact path="/tradeDetail" element={<TradeDetail/>} />
+            <Route exact path="/security/:id" element={<SecurityDetail/>} />
+            <Route exact path="/trades/:id" element={<TradeDetail/>} />
             <Route exact path="/modify-trade/:id" element={<Tradeedit/>} />
             <Route exact path="/about" element={<About/>} />
           </Routes>

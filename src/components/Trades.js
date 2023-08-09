@@ -5,65 +5,65 @@ import TradeItem from './TradeItem';
 import TradeList from './TradeList';
 
 const Trades = (props) => {
-  const trades =  {
-    0 : {
-    id: "trade001",
-    bookId: "book001",
-    counterpartyId: "counterparty001",
-    securityId: "security001",
-    quantity: 100,
-    status: "completed",
-    price: 50.25,
-    buy_sell: "buy",
-    tradeDate: "2023-08-08T10:00:00Z",
-    settlementDate: "2023-08-07",
-    issue: "Trade Fail"
-  },
-  1 : {
-    id: "trade002",
-    bookId: "book001",
-    counterpartyId: "counterparty001",
-    securityId: "security001",
-    quantity: 100,
-    status: "completed",
-    price: 50.25,
-    buy_sell: "buy",
-    tradeDate: "2023-08-08T10:00:00Z",
-    settlementDate: "2023-08-15",
-    issue: "NA"
-  },
-  2 : {
-    id: "trade003",
-    bookId: "book001",
-    counterpartyId: "counterparty001",
-    securityId: "security001",
-    quantity: 100,
-    status: "completed",
-    price: 50.25,
-    buy_sell: "buy",
-    tradeDate: "2023-08-08T10:00:00Z",
-    settlementDate: "2023-08-07",
-    issue: "NA"
-  }
-}
-  // const [trades, setTrades] = useState([]);
-  // const fetchAllTrades = async()=>{
-  //   const response = await fetch(`http://localhost:5000/api/security/get-all-trades`, {
-  //     method: 'GET',
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //         'auth-token' : localStorage.getItem('token')
-  //     }
-  // });
-  // const json = await response.json();
-  // setTrades(json)
+//   const trades =  {
+//     0 : {
+//     id: "trade001",
+//     bookId: "book001",
+//     counterpartyId: "counterparty001",
+//     securityId: "security001",
+//     quantity: 100,
+//     status: "completed",
+//     price: 50.25,
+//     buy_sell: "buy",
+//     tradeDate: "2023-08-08T10:00:00Z",
+//     settlementDate: "2023-08-07",
+//     issue: "Trade Fail"
+//   },
+//   1 : {
+//     id: "trade002",
+//     bookId: "book001",
+//     counterpartyId: "counterparty001",
+//     securityId: "security001",
+//     quantity: 100,
+//     status: "completed",
+//     price: 50.25,
+//     buy_sell: "buy",
+//     tradeDate: "2023-08-08T10:00:00Z",
+//     settlementDate: "2023-08-15",
+//     issue: "NA"
+//   },
+//   2 : {
+//     id: "trade003",
+//     bookId: "book001",
+//     counterpartyId: "counterparty001",
+//     securityId: "security001",
+//     quantity: 100,
+//     status: "completed",
+//     price: 50.25,
+//     buy_sell: "buy",
+//     tradeDate: "2023-08-08T10:00:00Z",
+//     settlementDate: "2023-08-07",
+//     issue: "NA"
+//   }
+// }
+  const [trades, setTrades] = useState([]);
+  const fetchAllTrades = async()=>{
+    const response = await fetch(`http://localhost:5000/api/trade/`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'auth-token' : localStorage.getItem('token')
+      }
+  });
+  const json = await response.json();
+  setTrades(json)
   // console.log(json)
-  // }
+  }
 
-  // useEffect(() => {
-  //   fetchAllTrades();
-  //   // eslint-disable-next-line
-  // },[])
+  useEffect(() => {
+    fetchAllTrades();
+    // eslint-disable-next-line
+  },[])
 
   return (
     <>

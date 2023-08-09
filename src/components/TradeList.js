@@ -9,6 +9,7 @@ const TradeList = ({ trades }) => {
     for (const key in trades) {
         const trade = trades[key];
         const settlementDate = new Date(trade.settlementDate);
+        // console.log(trade)
         const curDate = new Date();
         const category = settlementDate < curDate ? (trade.issue != "NA" ? "Issues" : "Post Maturity") : "Other";
         // bgColor = category !== "Other" ? ( category == "Issues" ? "bg-primary" : "bg-danger"): "bg-success"; 
@@ -32,7 +33,7 @@ const TradeList = ({ trades }) => {
                     <div className='border border-3 rounded p-2'>
                     {groupedTrades[category].map(trade => (
                         <Link key={trade.id} to={{
-                            pathname: `/tradeDetail`,
+                            pathname: `/trades/${trade.id}`,
                             state: { id: trade.id }
                         }}>
                             <TradeItem trade={trade} />

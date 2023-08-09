@@ -8,25 +8,24 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const response = await fetch("http://localhost:5000/api/auth/login", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({email: credentials.email, password: credentials.password})
-        // });
-        // const json = await response.json()
-        // if (json.success){
-        //     // Save the auth token and redirect
-        //     localStorage.setItem('token', json.authtoken);
-        //     localStorage.setItem('PMTusername', json.name)
-        //     props.showAlert("Login Successfully", "success")
-        //     navigate("/dashboard");
-        // }
-        // else{
-        //     props.showAlert("Invalid Credentials", "danger")
-        // }
-        navigate("/dashboard");
+        const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: credentials.email, password: credentials.password})
+        });
+        if (response.status == 200){
+            // Save the auth token and redirect
+            const json = await response.json()
+            localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('PMTusername', json.name)
+            props.showAlert("Login Successfully", "success")
+            navigate("/dashboard");
+        }
+        else{
+            props.showAlert("Invalid Credentials", "danger")
+        }
     }
 
     const onChange = (e)=>{
